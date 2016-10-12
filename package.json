@@ -1,0 +1,34 @@
+{
+  "name": "osm-pbf-stream",
+  "version": "0.0.0",
+  "description": "Open Street Map Protocol Buffer Format Stream",
+  "author": "Jonas Hermsmeier <jhermsmeier@gmail.com> (https://jhermsmeier.de)",
+  "license": "MIT",
+  "keywords": [
+    "osm",
+    "pbf",
+    "stream",
+    "protobuf",
+    "protocol",
+    "buffer",
+    "decoder",
+    "parser"
+  ],
+  "main": "lib/osm",
+  "dependencies": {},
+  "devDependencies": {},
+  "homepage": "https://github.com/jhermsmeier/node-osm-pbf-stream",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jhermsmeier/node-osm-pbf-stream.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jhermsmeier/node-osm-pbf-stream/issues"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
