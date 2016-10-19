@@ -17,7 +17,6 @@ $ npm install --save osm-pbf-stream
 
 - [What](#what)
 - [Usage](#usage)
-- [TODO](#todo)
 - [Speed](#speed)
 
 <!-- /MarkdownTOC -->
@@ -35,27 +34,40 @@ var OsmPbf = require( 'osm-pbf-stream' )
 ```
 
 ```js
-fs.createReadStream( 'berlin-latest.osm.pbf' )
+var pbfStream = fs.createReadStream( 'berlin-latest.osm.pbf' )
   .pipe( new OsmPbf.BlobParser() )
   .on( 'header', ... )
   .on( 'blob', ... )
-  .once( 'finish', ... )
 ```
 
-## TODO
+```js
+// Now you can process the Protocol Buffer stream
+// with a streaming Protobuf parser, like `pbs`
+var pbs = require( 'pbs' )
+var osmSchema = fs.readFileSync( 'osmformat.proto', 'utf8' )
+var messages = pbs( osmSchema )
 
-- [x] Extract headers, blobs from `.osm.pbf`
-- [ ] Decompress blob chunks
-- [ ] Stream blobs
-- [ ] Stream-parse Protocol Buffer messages
+var decoder = messages.PrimitiveBlock.decode()
+
+decoder.primitivegroup( function( group, next ) {
+  console.log( 'PrimitiveGroup.nodes', group.dense || group.nodes )
+  next()
+})
+
+decoder.once( 'finish', function() {
+  console.log( 'EOD' )
+})
+
+// Pipe the PBF stream to the decoder
+pbfStream.pipe( decoder )
+```
 
 ## Speed
 
-With the ~49 MB test file, it processes between 200-270 MB/s on a MacBook Pro.
-Expect this to drop significantly, as decompression and message parsing hasn't been implemented, yet.
+With the ~49 MB test file, it processes about 50 MB/s on a MacBook Pro.
 
 ```
 BlobParser
-    ✓ 1MB chunk size (179ms)
-    ✓ Default (16KB) chunk size (236ms)
+  ✓ 1MB chunk size (986ms)
+  ✓ Default (16KB) chunk size (1009ms)
 ```
