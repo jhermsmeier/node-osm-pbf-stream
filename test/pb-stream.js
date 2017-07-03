@@ -22,12 +22,13 @@ suite( 'ProtoBuf', function() {
     })
 
     fs.createReadStream( DATAPATH )
-      .once( 'error', done )
+      .on( 'error', done )
       .pipe( new OSM.BlobParser() )
-      .once( 'error', done )
+      .on( 'error', done )
       .pipe( decoder )
-      .once( 'error', done )
-      .once( 'finish', done )
+      .on( 'error', done )
+      .on( 'finish', done )
+      // .resume()
 
   })
 
