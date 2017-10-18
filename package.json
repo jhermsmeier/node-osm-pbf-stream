@@ -1,6 +1,6 @@
 {
   "name": "osm-pbf-stream",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Open Street Map Protocol Buffer Format Stream",
   "author": "Jonas Hermsmeier <jhermsmeier@gmail.com> (https://jhermsmeier.de)",
   "license": "MIT",
