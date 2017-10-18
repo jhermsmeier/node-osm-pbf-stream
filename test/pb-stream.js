@@ -18,7 +18,7 @@ suite( 'ProtoBuf', function() {
 
     decoder.primitivegroup( function( group, next ) {
       // console.log( 'PrimitiveGroup', group.dense || group.nodes )
-      next()
+      process.nextTick( next )
     })
 
     fs.createReadStream( DATAPATH )
