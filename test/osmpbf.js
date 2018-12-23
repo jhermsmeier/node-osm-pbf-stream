@@ -39,8 +39,7 @@ suite( 'BlobParser', function() {
         done( error )
       })
       .once( 'finish', function() {
-        assert.strictEqual( headerCount, 671 )
-        assert.strictEqual( headerCount, blobCount )
+        assert.strictEqual( blobCount, headerCount )
         done()
       })
       .resume()
@@ -67,8 +66,7 @@ suite( 'BlobParser', function() {
         done( error )
       })
       .once( 'finish', function() {
-        assert.strictEqual( headerCount, 671 )
-        assert.strictEqual( headerCount, blobCount )
+        assert.strictEqual( blobCount, headerCount )
         done()
       })
       .resume()
